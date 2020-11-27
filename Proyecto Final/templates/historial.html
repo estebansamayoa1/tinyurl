@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Historial</title>
     <style>
         .container{
         display: flex;
@@ -33,7 +33,7 @@
         padding: 5px;
         border: 5px solid gray;
         margin: 0; 
-        height: 725px;
+        height: 1500px;
         background-color: white;
         }
         .topnav {
@@ -57,26 +57,44 @@
         }
 
 
-/* Style the links inside the navigation bar */
     .topnav a {
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 15px 149px;
+    padding: 15px 206px;
     text-decoration: none;
         font-size: 17px;
 }
 
-/* Change the color of links on hover */
     .topnav a:hover {
     background-color: #ddd;
     color: black;
     }
 
-/* Add a color to the active/current link */
     .topnav a.active {
         background-color: #4CAF50;
         color: white;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 200px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width:1000px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        background-color:slategrey;
+    }
+
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 20px 23px;
     }
     </style>
 </head>
@@ -84,19 +102,30 @@
     <div style="background-color:  grey;">
     <img src="../static/logo1.png" alt="logo" style="width:500px;height:175px; margin-left: -45px; margin-bottom: -40px; margin-top: -50px;">
     <div class="topnav">
-        <a class="active" href="/"> Short It!</a>
-        <a href="/historial">Historial</a>
+        <a href="/"> Short It!</a>
+        <a class="active" href="/historial">Historial</a>
         <a href="/stats">Stats</a>
-        <a href="/about">About</a>
     </div>
-    <TABLE  BORDER="3">
-    {% for key, link in links.items() %}
-    <TR>
-    <TD>{{key}}</TD>
-    <TD>{{link}}</TD>
-    </TR>
-    {% endfor %}
-    </TABLE>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Short Url</th>
+                <th>Links</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, link in links.items() %}
+            <TR>
+                <TD>http://127.0.0.1:5000/{{key}}</TD>
+                <TD>{{link}}</TD>
+            </TR>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="get" action="/administrador">
+        <button type="submit" style="margin: 0px 650px; width:100px; height:50px;">Administrador</button>
+    </form>
     </div>
 </body>
 </html>

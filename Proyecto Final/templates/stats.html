@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShortIt!</title>
+    <title>Stats</title>
     <style>
         .container{
         display: flex;
@@ -27,14 +27,13 @@
         padding: 3px;
         width: 505px;
         height:100px;
-        background-color:slategrey;
       }
       div {
         width: 1405px;
         padding: 5px;
         border: 5px solid gray;
         margin: 0; 
-        height: 725px;
+        height: 1500px;
         background-color: white;
         }
         .topnav {
@@ -58,7 +57,6 @@
         }
 
 
-/* Style the links inside the navigation bar */
     .topnav a {
     float: left;
     color: #f2f2f2;
@@ -68,16 +66,35 @@
         font-size: 17px;
 }
 
-/* Change the color of links on hover */
     .topnav a:hover {
     background-color: #ddd;
     color: black;
     }
 
-/* Add a color to the active/current link */
     .topnav a.active {
         background-color: #4CAF50;
         color: white;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 200px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width:1000px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        background-color:slategrey;
+    }
+
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 20px 23px;
     }
     </style>
 </head>
@@ -85,23 +102,29 @@
     <div style="background-color:  grey;">
     <img src="../static/logo1.png" alt="logo" style="width:500px;height:175px; margin-left: -45px; margin-bottom: -40px; margin-top: -50px;">
     <div class="topnav">
-        <a class="active" href="/"> Short It!</a>
+        <a  href="/"> Short It!</a>
         <a href="/historial">Historial</a>
-        <a href="/stats">Stats</a>
+        <a class="active" href="/stats">Stats</a>
     </div>
-    <form method="POST" class="centro2">
-      <div action=" " style="width:500px; height:175px; margin-left:-25px; background-color: slategrey;">
-      <h2>GENERAR LINK</h2>
-      <label><b>Link  </b></label>
-      <input type="text" name="url"  placeholder="Ingrese una link para acortar" style="width:350px;"><br><br>
-      <label>Custom Url  </label>
-      <input type="text" name="customurl"  placeholder="Ingrese un custom url"><br>
-      <button type="submit" style="margin: 20px 200px;">Short it!</button>
-    </form>
-    <div class="centro3">
-    <p><b>URL:</b> {{url}}</p>
-    <p><b>Nuevo URL:</b> {{short}}</p>
-  </div> 
-  </div>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Short Url</th>
+                <th>Visits</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, val in links.items() %}
+            <TR>
+                <TD>http://127.0.0.1:5000/{{key}}</TD>
+                <TD>{{val}}</TD>
+            {% endfor %}
+            </TR>
+        </tbody>
+    </table>
+
+
+    </div>
 </body>
 </html>
