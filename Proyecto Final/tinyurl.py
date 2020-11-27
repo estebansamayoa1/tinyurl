@@ -3,7 +3,6 @@ from jinja2 import Template, Environment, FileSystemLoader
 from typing import Dict, Text
 import random
 import string
-import validators
 from redis import Redis
 import os
 
@@ -23,14 +22,12 @@ def generarurl(url):
     if not url:
         return " "
     else:
-        if (validators.url(url)==True):
-            indexlength = 8
-            possible_characters = "abcdefghijklmnopqrstuvwxyz1234567890"
-            random_choices = [random.choice(possible_characters) for i in range(indexlength)]
-            index = "".join(random_choices)
-            return index
-        else:
-            return "Link Invalido"
+        indexlength = 8
+        possible_characters = "abcdefghijklmnopqrstuvwxyz1234567890"
+        random_choices = [random.choice(possible_characters) for i in range(indexlength)]
+        index = "".join(random_choices)
+        return index
+
 
 def BorrarUrl(key):
     redisclient.hdel("UrlsLog", key)
